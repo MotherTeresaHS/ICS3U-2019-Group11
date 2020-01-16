@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web App</title>
+  </head>
+  <body>
+    <div id="user_info">
+      <p>Please wait ...</p>
+    </div>
+    <div>
+      <button onclick="getUser()">Get User Info</button>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+
+    async function getUser() {
+      // get the user info from API
+
+      const api_url = 'https://2zq11l2ikl.execute-api.us-east-1.amazonaws.com/prod/user-profile?user_email=jane.smith@gmail.com';
+      const api_response = await fetch(api_url);
+      const api_data = await(api_response).json();
+
+      const div_user_info = document.getElementById('user_info');
+      div_user_info.innerHTML = api_data['body'];
+    }
+  </script>
+</html>
